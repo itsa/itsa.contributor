@@ -1,4 +1,9 @@
+.DS_Store
 node_modules/
 src/
 site-preview/
 site/
+setup/
+server/mocha/chai.js
+server/mocha/chai-as-promised.js
+coverage/

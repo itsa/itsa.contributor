@@ -1,7 +1,8 @@
+cd ..
 git pull origin master
 cd site
 git pull origin master
-cd ../src/parcela
+cd ../src/itsa.build
 git pull origin master
 cd ../event
 git pull origin master
@@ -9,19 +10,12 @@ cd ../event-dom
 git pull origin master
 cd ../event-mobile
 git pull origin master
-cd ../fake-dom
+cd ../node-win
 git pull origin master
 cd ../io
 git pull origin master
-cd ../lang-ext
-git pull origin master
-cd ../parcel
-git pull origin master
-cd ../promise-ext
-git pull origin master
-cd ../routing
+cd ../extend-js
 git pull origin master
 cd ../utils
 git pull origin master
-cd ../virtual-dom
-git pull origin master
+cd ../sh

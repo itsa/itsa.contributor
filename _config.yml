@@ -1,11 +1,11 @@
 # Site settings
-title: Parcela
-email: marco@parcela.io
+title: ITSA modules
+email: contact@itsa.io
 description: ""
 baseurl: ""
-url: "http://parcela.github.io"
-twitter_username: ParcelaLib
-github_username:  Parcela
+url: "http://itsa.github.io"
+twitter_username: ItsaModules
+github_username:  itsa
 
 # Build settings
 highlighter: rouge
