@@ -82,7 +82,7 @@ var stream = function (req, res) {
             if (j<5) {
                 stream();
             }
-        }, 100);
+        }, 800);
     };
     stream();
 };
