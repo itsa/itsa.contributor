@@ -1,4 +1,5 @@
 cd ..
+npm install
 mkdir -p src
 cd src
 rm -f node_modules
