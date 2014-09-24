@@ -57,6 +57,7 @@ var sendText = function (req, res) {
 
 var stream = function (req, res) {
     var block2k = '',
+        j = 1,
         i;
     // Very interesting issue where we must take care with:
     // XDomainRequest only fires the `onprogress`-event when the block of code exceeds 2k !
@@ -69,21 +70,21 @@ var stream = function (req, res) {
           'access-control-allow-origin': '*',
           'Content-Type': 'text/plain'
         });
-    for (var i=1; i<4; i++) {
-        setTimeout((function(j) {
-            return function() {
+    var stream = function () {
+        setTimeout(function() {
+            if (j<4) {
                 res.write(new Buffer(block2k+'package '+j));
             }
-        })(i),
-        i*300);
-    }
-    setTimeout(function() {
-        res.end(block2k+'package 4');
-    }, 1200);
-
-    // res.set({'Content-Type': 'text/plain'})
-       // .status(200)
-       // .send('Acknowledge responsetext ok');
+            else {
+                res.end(block2k+'package 4');
+            }
+            j++;
+            if (j<5) {
+                stream();
+            }
+        }, 100);
+    };
+    stream();
 };
 
 var sendXML = function (req, res) {

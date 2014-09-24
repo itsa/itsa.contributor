@@ -7,7 +7,7 @@ var express = require('express'),
     REVIVER = function(key, value) {
         return DATEPATTERN.test(value) ? new Date(value) : value;
     },
-    BASEDIR = '/var/www/vhosts/server.parcela.io/server';
+    BASEDIR = '/var/www/vhosts/server.itsa.io/server';
 
 var app = express();
 
