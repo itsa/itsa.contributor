@@ -19,3 +19,4 @@ git pull origin master
 cd ../utils
 git pull origin master
 cd ../sh
+echo READY

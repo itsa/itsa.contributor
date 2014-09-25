@@ -10,3 +10,4 @@ rm -f chai.js
 ln -s ../../node_modules/chai-as-promised/lib/chai-as-promised.js chai-as-promised.js
 ln -s ../../node_modules/chai/chai.js chai.js
 cd ../../sh
+echo READY
