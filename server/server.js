@@ -12,7 +12,7 @@ var express = require('express'),
 var app = express();
 
 // process.chdir(BASEDIR);
-process.title = 'parcela-server';
+process.title = 'itsa-server';
 
 // parse application/x-www-form-urlencoded for IE using cors
 // cors-ie cannot recieve a content-type: so it is unaware of the contentype and will not parse the right way
