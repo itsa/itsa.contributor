@@ -1,7 +1,7 @@
 {
-  "name": "Parcela",
-  "description": "Parcela web application development",
-  "repository": "https://github.com/Parcela",
+  "name": "ITSA modules",
+  "description": "ITSA web application development",
+  "repository": "https://github.com/itsa",
   "devDependencies": {
     "body-parser": "^1.5.2",
     "browserify": "^5.9.1",

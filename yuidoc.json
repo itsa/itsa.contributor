@@ -1,14 +1,14 @@
 {
-    "name": "Itsa",
-    "description": "Itsa modules",
+    "name": "ITSA",
+    "description": "ITSA modules",
     "version": "0.0.1",
     "url": "https://github.com/itsa",
     "options": {
         "linkNatives": "false",
         "attributesEmit": "false",
         "selleck": "false",
-        "ignorePaths": [ "tests" ,"node_modules", "coverage", "site-preview", "site"],
-        "paths": "src/**",
+        "exclude": "itsabuild.js,",
+        "paths": "./src/**",
         "outdir": "./site-preview/api",
 		"tabtospace":4
     }

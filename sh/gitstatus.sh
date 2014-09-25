@@ -28,5 +28,4 @@ git status
 cd ../utils
 pwd
 git status
-cd ../sh
 echo READY

@@ -1,8 +1,6 @@
 cd ..
 jshint src/**/*.js
-cd site
-yuidoc . -q --themedir apitheme
-cd ..
+yuidoc . -q -c ./site/yuidoc.json --themedir apitheme
 browserify -r ./src/itsa.build:itsa -u node-win > ./site/dist/itsabuild.js
 uglifyjs ./site/dist/itsabuild.js -c drop_debugger,drop_console,warnings=false -m >./site/dist/itsabuild-min.js
 cd ./site
@@ -10,5 +8,4 @@ rm -f ./dist/itsabuild.tar
 tar cf ./dist/itsabuild.tar ./dist/*
 cd ..
 jekyll build
-cd ./sh
 echo READY
