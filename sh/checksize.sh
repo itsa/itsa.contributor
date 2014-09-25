@@ -5,3 +5,4 @@ mv gzipped-min.js.gz gzipped
 ls -all gzipped
 rm -f ./gzipped
 rm -f ./gzipped.js
+echo READY
