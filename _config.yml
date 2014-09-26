@@ -9,7 +9,6 @@ twitter_username: ItsaModules
 github_username:  itsa
 
 # Build settings
-highlighter: rouge
 markdown: redcarpet
 permalink: pretty
 source: ./site
