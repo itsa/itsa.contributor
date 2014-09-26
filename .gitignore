@@ -8,3 +8,4 @@ server/mocha/chai.js
 server/mocha/chai-as-promised.js
 server/npm-debug.log
 coverage/
+npm-debug.log
