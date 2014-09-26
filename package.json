@@ -1,5 +1,5 @@
 {
-  "name": "ITSA modules",
+  "name": "ITSAmodules",
   "description": "ITSA web application development",
   "repository": "https://github.com/itsa",
   "devDependencies": {
@@ -18,10 +18,8 @@
     "useragent": "^2.0.9",
     "semver": "^3.0.1",
     "xmldom": "^0.1.19",
-    "tsort": "^0.0.1"
-  },
-  "dependencies": {
+    "tsort": "^0.0.1",
     "ypromise": "^0.2.3",
-    "hammerjs": "^2.0.2"
+    "hammerjs": "^2.0.3"
   }
 }
