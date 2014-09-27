@@ -6,6 +6,8 @@ uglifyjs ./site/dist/itsabuild.js -b ascii_only=true,beautify=false -c drop_debu
 cd ./site
 rm -f ./dist/itsabuild.tar
 tar cf ./dist/itsabuild.tar ./dist/*
+rm -f ./dist/itsabuild.js
+rm -f ./dist/itsabuild-min.js
 cd ..
 jekyll build
 echo READY
