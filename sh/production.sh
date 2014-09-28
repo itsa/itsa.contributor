@@ -1,3 +1,4 @@
+echo STARTING - this may take a couple of seconds...
 cd ..
 jshint src/**/*.js
 yuidoc . -q -c ./site/yuidoc.json --themedir apitheme
@@ -8,6 +9,11 @@ rm -f ./dist/itsabuild.tar
 tar cf ./dist/itsabuild.tar ./dist/*
 rm -f ./dist/itsabuild.js
 rm -f ./dist/itsabuild-min.js
+
+
+#git add api
+
+
 cd ..
 jekyll build
 echo READY

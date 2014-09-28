@@ -1,3 +1,4 @@
+echo STARTING - this may take a couple of seconds...
 cd ..
 jshint src/**/*.js
 jekyll build
