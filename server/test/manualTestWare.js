@@ -27,7 +27,7 @@ var list = function (req, res) {
 		}
 		return false;
 	}).then(function (files) {
-		var html = '<h1>Tests available</h1>';
+        var html = '<h2>Tests available (or <a href="/coverage">view coverage</a> - after: "npm test modulename")</h2>';
 
 		for (var m in testFiles) {
 			html += '<p>' + m + '</p><ul>' + testFiles[m].map(function (file) {

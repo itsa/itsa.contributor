@@ -59,6 +59,8 @@ var stream = function (req, res) {
     var block2k = '',
         j = 1,
         xdr = req.param('xdr'),
+        type = req.param('type'),
+        xmlHeader = '<?xml version="1.0" encoding="UTF-8" ?>',
         i;
     // Very interesting issue where we must take care with:
     // XDomainRequest only fires the `onprogress`-event when the block of code exceeds 2k !
@@ -71,15 +73,31 @@ var stream = function (req, res) {
     }
     res.set({
           'access-control-allow-origin': '*',
-          'Content-Type': 'text/plain'
+          'Content-Type': (type==='xml') ? 'text/xml' : ((type==='json') ? 'application/json' : 'text/plain')
         });
     var stream = function () {
         setTimeout(function() {
             if (j<4) {
-                res.write(new Buffer(block2k+'package '+j));
+                if (type==='json') {
+                    res.write(new Buffer(block2k+(j===1 ? '[' : '')+'{"a":'+j+'},'));
+                }
+                else if (type==='xml') {
+                    res.write(new Buffer(block2k+((j===1) ? xmlHeader+'<root>' : '')+'<response>'+j+'</response>'));
+                }
+                else {
+                    res.write(new Buffer(block2k+'package '+j));
+                }
             }
             else {
-                res.end(block2k+'package 4');
+                if (type==='json') {
+                    res.end(block2k+'{"a":4}]');
+                }
+                else if (type==='xml') {
+                    res.end(block2k+'<response>4</response></root>');
+                }
+                else {
+                    res.end(block2k+'package 4');
+                }
             }
             j++;
             if (j<5) {
