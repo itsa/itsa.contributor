@@ -69,7 +69,7 @@ var sendStream = function (req, res) {
                         res.write(new Buffer(block2k+(j===1 ? '[' : '')+'{"item":'+j+'},{"item":'+(++j)+'},{"item":'+(++j)+'},'));
                         break;
                     case 2:
-                        res.write(new Buffer(block2k+(j===1 ? xmlHeader+'<root>' : '')+'<item>'+j+'</item><item>'+(++j)+'</item><item>'+(++j)+'</item>'));
+                        res.write(new Buffer((j===1 ? xmlHeader+block2k+'<root>' : '')+'<div>item '+j+'</div><div>item '+(++j)+'</div><div>item '+(++j)+'</div>'));
                         break;
                 }
             }
@@ -79,7 +79,7 @@ var sendStream = function (req, res) {
                         res.end(block2k+'{"item":'+j+'},{"item":'+(++j)+'},{"item":'+(++j)+'}]');
                         break;
                     case 2:
-                        res.end(block2k+'<item>'+j+'</item><item>'+(++j)+'</item><item>'+(++j)+'</item></root>');
+                        res.end(block2k+'<div>item '+j+'</div><div>item '+(++j)+'</div><div>item '+(++j)+'</div></root>');
                         break;
                 }
             }
