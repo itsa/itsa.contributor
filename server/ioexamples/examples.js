@@ -7,6 +7,7 @@ module.exports = function (app, prefix) {
     prefix = '/' + prefix;
     app.get(prefix, sendExample);
     app.get(prefix + '/stream', sendStream);
+    app.all(prefix + '/delay', sendDelayed);
 };
 
 
@@ -29,6 +30,18 @@ var sendExample = function (req, res) {
         })
        .status(200)
        .send(data);
+};
+
+var sendDelayed = function (req, res) {
+    var contenttype = 'text/plain';
+    setTimeout(function() {
+        res.set({
+              'access-control-allow-origin': '*',
+              'Content-Type': contenttype
+            })
+           .status(200)
+           .send('data was send');
+    }, 1000);
 };
 
 var sendStream = function (req, res) {
