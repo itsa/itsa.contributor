@@ -59,6 +59,8 @@ var stream = function (req, res) {
     var block2k = '',
         j = 1,
         xdr = req.param('xdr'),
+        type = req.param('type'),
+        xmlHeader = '<?xml version="1.0" encoding="UTF-8" ?>',
         i;
     // Very interesting issue where we must take care with:
     // XDomainRequest only fires the `onprogress`-event when the block of code exceeds 2k !
@@ -71,15 +73,76 @@ var stream = function (req, res) {
     }
     res.set({
           'access-control-allow-origin': '*',
-          'Content-Type': 'text/plain'
+          'Content-Type': ((type==='xml') || (type==='xmlnoblock') || (type==='xmlnostream')) ? 'text/xml' : (((type==='json') || (type==='jsonobjectnoblock') || (type==='jsonobjectnostream')) ? 'application/json' : 'text/plain')
         });
     var stream = function () {
         setTimeout(function() {
             if (j<4) {
-                res.write(new Buffer(block2k+'package '+j));
+                if (type==='jsonobject') {
+                    switch (j) {
+                        case 1:
+                            res.write(new Buffer(block2k+'{"a":1,'));
+                            break;
+                        case 2:
+                            res.write(new Buffer(block2k+'"b":2,'));
+                            break;
+                        case 3:
+                            res.write(new Buffer(block2k+'"c":3,'));
+                            break;
+                    }
+                }
+                else if (type==='jsonarray') {
+                    res.write(new Buffer(block2k+(j===1 ? '[' : '')+'{"a":'+j+'},'));
+                }
+                else if (type==='jsonobjectnoblock') {
+                    switch (j) {
+                        case 1:
+                            res.write(new Buffer('{"a":1,'));
+                            break;
+                        case 2:
+                            res.write(new Buffer('"b":2,'));
+                            break;
+                        case 3:
+                            res.write(new Buffer('"c":3,'));
+                            break;
+                    }
+                }
+                else if (type==='xml') {
+                    res.write(new Buffer(((j===1) ? xmlHeader+block2k+'<root>' : '')+'<response>'+j+'</response>'));
+                }
+                else if (type==='xmlnoblock') {
+                    // res.write(new Buffer(((j===1) ? xmlHeader+block2k+'<root>' : '')+'<response>'+j+'</response>'));
+                    res.write(new Buffer(((j===1) ? xmlHeader+'<root>' : '')+'<response>'+j+'</response>'));
+                }
+                else if (type==='noblock') {
+                    res.write(new Buffer('package '+j));
+                }
+                else {
+                    res.write(new Buffer(block2k+'package '+j));
+                }
             }
             else {
-                res.end(block2k+'package 4');
+                if (type==='jsonobject') {
+                    res.end(block2k+'"d":4}');
+                }
+                else if (type==='jsonarray') {
+                    res.end(block2k+'{"a":4}]');
+                }
+                else if (type==='jsonobjectnoblock') {
+                    res.end('"d":4}');
+                }
+                else if (type==='xml') {
+                    res.end(block2k+'<response>4</response></root>');
+                }
+                else if (type==='xmlnoblock') {
+                    res.end('<response>4</response></root>');
+                }
+                else if (type==='noblock') {
+                    res.end('package 4');
+                }
+                else {
+                    res.end(block2k+'package 4');
+                }
             }
             j++;
             if (j<5) {
@@ -87,7 +150,18 @@ var stream = function (req, res) {
             }
         }, 500);
     };
-    stream();
+    if (type==='nostream') {
+        res.end('package 1package 2package 3package 4');
+    }
+    else if (type==='jsonobjectnostream') {
+        res.end('{"a":1, "b": 2, "c": 3, "d": 4}');
+    }
+    else if (type==='xmlnostream') {
+        res.end(xmlHeader+'<root><response>1</response><response>2</response><response>3</response><response>4</response></root>');
+    }
+    else {
+        stream();
+    }
 };
 
 var sendXML = function (req, res) {

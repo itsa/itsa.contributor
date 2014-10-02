@@ -19,7 +19,7 @@ process.title = 'itsa-server';
 // in case of IE<10 browsers, the useragent is determined and contentype of 'application/json' is assumed on POST-requests
 // in case you need another contentype, you could use something like this instead:
 // app.use(bodyParserIEcors({contentType: 'application/x-www-form-urlencoded'}));
-app.use(bodyParserIEcors());
+app.use(bodyParserIEcors('application/json;charset=utf-8'));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,7 +40,9 @@ app.use(bodyParser.text());
 // The module needs to receive a reference to the express server instance
 // and the path that will serve as root for the requests it receives.
 require('./test/manualTestWare.js')(app, 'test');
+require('./test/coverage.js')(app, 'coverage');
 require('./iotester/iotester.js')(app, 'io');
+require('./ioexamples/examples.js')(app, 'example');
 require('./crudtester/crudtester.js')(app, 'crud');
 require('./polyfills/index.js')(app, 'polyfills');
 
