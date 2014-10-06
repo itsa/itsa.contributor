@@ -1,6 +1,7 @@
 echo STARTING - this may take a couple of seconds...
 cd ..
 jshint src/**/*.js
+jshint src/**/**/*.js
 jekyll build
 rm -f ./site-preview/dist/itsabuild.js
 rm -f ./site-preview/dist/itsabuild-min.js
