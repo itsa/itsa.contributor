@@ -49,7 +49,6 @@ var test = function (req, res, next) {
 
 	var resolve = function (module) {
 		// console.log('Resolving requires in ', module);
-
 		res.setHeader('content-type', 'application/javascript');
 		var brw = browserify();
 		if (path.extname(t) === '.js') {
@@ -58,7 +57,7 @@ var test = function (req, res, next) {
 			brw.require(module);
 		}
 		brw.exclude('jsdom');
-
+		brw.transform('cssify');
 		brw.bundle().pipe(res);
 	};
 
