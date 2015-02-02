@@ -56,8 +56,7 @@ var test = function (req, res, next) {
 		} else {
 			brw.require(module);
 		}
-		brw.exclude('jsdom');
-		brw.transform('cssify');
+		brw.exclude('node-win');
 		brw.bundle().pipe(res);
 	};
 
